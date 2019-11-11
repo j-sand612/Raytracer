@@ -2,7 +2,8 @@
 #define HITABLEH
 
 #include "ray.h"
-#include "material.h"
+
+class material;
 
 struct hit_record{
     float t;
