@@ -3,6 +3,8 @@
 
 #include "hitable.h"
 
+constexpr double pi2() { return std::atan(1)*4; }
+
 class sphere: public hitable{
     public:
         sphere(){}
@@ -45,4 +47,12 @@ bool sphere::bounding_box(float t0, float t1, aabb& box) const {
     box = aabb(center - vec3(radius, radius, radius), center + vec3(radius, radius, radius));
     return true;
 }
+
+void get_sphere_uv(const vec3& p, float& u, float& v){
+    float phi = atan2(p.z(), p.x());
+    float theta = asin(p.y());
+    u = 1-(phi+pi2()) / (2*pi2());
+    v = (theta + pi2()/2) / pi2();
+}
+
 #endif
